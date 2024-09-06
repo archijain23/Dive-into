@@ -19,8 +19,6 @@ async function connectToDatabase() {
   const client = new MongoClient(uri, {
     tls: true, // Use TLS/SSL for the connection
     tlsInsecure: false, // Set to true if you want to ignore SSL certificate errors (not recommended for production)
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   });
   try {
     await client.connect();
