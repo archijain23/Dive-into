@@ -21,7 +21,11 @@ const uri = process.env.MONGO_URL;
 async function connectToDatabase() {
   const client = new MongoClient(uri, {
     tls: true,
-    tlsInsecure: true, // For testing purposes, but avoid using it in production.
+    tlsInsecure: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+    loggerLevel: "debug", // For testing purposes, but avoid using it in production.
   });
   try {
     await client.connect();
