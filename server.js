@@ -31,7 +31,6 @@ async function connectToDatabase() {
     process.exit(1); // Exit the process if MongoDB connection fails
   }
 }
-
 // Connect to the database when the server starts
 connectToDatabase();
 
