@@ -11,9 +11,6 @@ let collection; // Declare the collection variable globally
 
 app.set("view engine", "ejs");
 
-// Serve static files
-app.use(express.static("frames"));
-
 // MongoDB connection URI
 const uri = process.env.MONGO_URL;
 
@@ -24,7 +21,6 @@ async function connectToDatabase() {
     tlsInsecure: false, // Set to true if you want to ignore SSL certificate errors (not recommended for production)
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    loggerLevel: "debug", // For testing purposes, but avoid using it in production.
   });
   try {
     await client.connect();
@@ -32,7 +28,7 @@ async function connectToDatabase() {
     collection = client.db("MarineMinds").collection("framePacific_urls"); // Initialize the collection
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
-    throw error; // Rethrow the error so that the app fails to start if MongoDB connection fails
+    process.exit(1); // Exit the process if MongoDB connection fails
   }
 }
 
@@ -46,7 +42,7 @@ app.get("/", (req, res) => {
 
 // Route to render EJS template
 app.get("/pacific", (req, res) => {
-  res.render("indexx.ejs");
+  res.render("index.ejs");
 });
 
 // Route to fetch Cloudinary URL from MongoDB
