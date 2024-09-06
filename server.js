@@ -23,10 +23,10 @@ async function connectToDatabase() {
   try {
     await client.connect();
     console.log("Connected to MongoDB");
-    collection = client.db("MarineMinds").collection("framePacific_urls"); // Initialize the collection
+    collection = client.db("MarineMinds").collection("framePacific_urls");
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
-    process.exit(1); // Exit the process if MongoDB connection fails
+    process.exit(1); // Exit if connection fails
   }
 }
 // Connect to the database when the server starts
