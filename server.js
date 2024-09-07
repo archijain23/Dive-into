@@ -5,10 +5,11 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const { MongoClient } = require("mongodb"); // Import MongoDB client
 const app = express();
+const path = require("path");
 
 let port = 3000;
 let collection; // Declare the collection variable globally
-
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // MongoDB connection URI
