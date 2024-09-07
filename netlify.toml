@@ -1,7 +1,5 @@
 [build]
-  command = "npm start"
   functions = "netlify/functions"
-  publish = "views"
 
 [[redirects]]
   from = "/api/frame-url/*"
