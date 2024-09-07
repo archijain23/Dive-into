@@ -16,8 +16,6 @@ const uri = process.env.MONGO_URL;
 
 // Function to connect to MongoDB
 const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   tls: true,
   tlsInsecure: false,
 });
@@ -26,10 +24,12 @@ async function connectToDatabase() {
   try {
     await client.connect();
     console.log("Connected to MongoDB");
+
+    // Set the collection variable after connecting
+    const db = client.db("MarineMinds"); // Replace with your database name
+    collection = db.collection("framePacific_urls"); // Replace with your collection name
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
-  } finally {
-    await client.close();
   }
 }
 // Connect to the database when the server starts
